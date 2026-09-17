@@ -10,10 +10,8 @@ import {
   Trash2,
   Save,
   RotateCcw,
-  Download,
   Image as ImageIcon,
   Key,
-  HelpCircle,
   CheckCircle2,
   AlertCircle,
   ExternalLink,
@@ -39,7 +37,6 @@ export const AdminPanel: React.FC = () => {
     adminPassword,
     updateAdminPassword,
     showToast,
-    downloadProjectZip,
     setCurrentPage,
   } = useSite();
 
@@ -50,7 +47,7 @@ export const AdminPanel: React.FC = () => {
 
   // Active Admin Tab
   const [activeTab, setActiveTab] = useState<
-    'theme' | 'personal' | 'projects' | 'services' | 'credentials' | 'security' | 'hosting'
+    'theme' | 'personal' | 'projects' | 'services' | 'credentials' | 'security'
   >('theme');
 
   // New Password state
@@ -377,13 +374,6 @@ export const AdminPanel: React.FC = () => {
             Preview Live Site
           </button>
           <button
-            onClick={downloadProjectZip}
-            className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg"
-          >
-            <Download className="w-4 h-4" />
-            <span>Download ZIP Package</span>
-          </button>
-          <button
             onClick={logoutAdmin}
             className="px-4 py-2 rounded-xl bg-red-950/40 border border-red-500/30 text-red-300 hover:text-red-200 text-xs font-semibold"
           >
@@ -452,16 +442,6 @@ export const AdminPanel: React.FC = () => {
         >
           <Key className="w-4 h-4" />
           <span>Security & Password</span>
-        </button>
-
-        <button
-          onClick={() => setActiveTab('hosting')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
-            activeTab === 'hosting' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-400 hover:text-white'
-          }`}
-        >
-          <HelpCircle className="w-4 h-4" />
-          <span>Hosting Guide</span>
         </button>
       </div>
 
@@ -1038,66 +1018,6 @@ export const AdminPanel: React.FC = () => {
                 Update Admin Password
               </button>
             </form>
-          </div>
-        </div>
-      )}
-
-      {/* Tab 7: Hosting & Upload Guide */}
-      {activeTab === 'hosting' && (
-        <div className="space-y-6 max-w-4xl">
-          <div className="p-8 rounded-3xl bg-[#111827] border border-[#1f293d] space-y-6">
-            <h3 className="text-2xl font-black text-white">
-              How To Upload Your Website To Any Hosting
-            </h3>
-            <p className="text-sm text-gray-300 leading-relaxed">
-              You do not need any coding or command line tools to deploy your new portfolio website. Here is the simple 2-step process:
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-              {/* Option 1 */}
-              <div className="p-5 rounded-2xl bg-[#151e2e] border border-[#1f293d] space-y-3">
-                <span className="px-3 py-1 rounded-md bg-cyan-500/20 text-cyan-300 text-xs font-bold">
-                  Recommended: Netlify / Vercel (Free)
-                </span>
-                <h4 className="font-bold text-white text-base">Drag-and-Drop Deploy</h4>
-                <ol className="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
-                  <li>Click <strong>&quot;Download ZIP Package&quot;</strong> above.</li>
-                  <li>Unzip the downloaded folder on your computer.</li>
-                  <li>Open <strong>netlify.com</strong> or <strong>vercel.com</strong> (create a free account).</li>
-                  <li>Drag the unzipped folder into Netlify&apos;s upload area.</li>
-                  <li>Your website is immediately live on a fast global CDN with free HTTPS SSL!</li>
-                </ol>
-              </div>
-
-              {/* Option 2 */}
-              <div className="p-5 rounded-2xl bg-[#151e2e] border border-[#1f293d] space-y-3">
-                <span className="px-3 py-1 rounded-md bg-blue-500/20 text-blue-300 text-xs font-bold">
-                  Standard Hosting: cPanel / Hostinger
-                </span>
-                <h4 className="font-bold text-white text-base">File Manager Upload</h4>
-                <ol className="text-xs text-gray-300 space-y-2 list-decimal list-inside leading-relaxed">
-                  <li>Log into your hosting account cPanel or Hostinger hPanel.</li>
-                  <li>Open the <strong>File Manager</strong> and go to <code className="text-cyan-400">public_html</code>.</li>
-                  <li>Upload the ZIP file and click <strong>Extract</strong>.</li>
-                  <li>Make sure <code className="text-cyan-400">index.html</code> is directly in public_html.</li>
-                  <li>Done! Visit your custom domain in the browser.</li>
-                </ol>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-blue-950/40 border border-blue-500/30 flex items-center justify-between">
-              <div>
-                <div className="text-sm font-bold text-white">Ready to package your files?</div>
-                <div className="text-xs text-gray-300">Generates complete archive with README guide.</div>
-              </div>
-              <button
-                onClick={downloadProjectZip}
-                className="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-black text-xs uppercase tracking-wider transition shadow-lg flex items-center gap-2"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download Final ZIP</span>
-              </button>
-            </div>
           </div>
         </div>
       )}
