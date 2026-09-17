@@ -44,8 +44,8 @@ export const AdminPanel: React.FC = () => {
   } = useSite();
 
   // Login Form State
-  const [usernameInput, setUsernameInput] = useState('admin');
-  const [passwordInput, setPasswordInput] = useState('Admin@123');
+  const [usernameInput, setUsernameInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
   const [loginError, setLoginError] = useState('');
 
   // Active Admin Tab
@@ -93,7 +93,7 @@ export const AdminPanel: React.FC = () => {
     e.preventDefault();
     const success = loginAdmin(usernameInput, passwordInput);
     if (!success) {
-      setLoginError('Incorrect password or username. Default is admin / Admin@123');
+      setLoginError('Incorrect username or password.');
     } else {
       setLoginError('');
     }
@@ -119,23 +119,6 @@ export const AdminPanel: React.FC = () => {
             <p className="text-xs text-gray-400 leading-relaxed">
               Log in to edit site text, add portfolio projects, modify services, update images, and switch visual themes live.
             </p>
-          </div>
-
-          {/* Dummy Credentials Reminder Banner */}
-          <div className="p-4 rounded-2xl bg-blue-950/40 border border-blue-500/30 text-xs text-cyan-300 space-y-1">
-            <div className="font-bold flex items-center gap-1.5 text-white">
-              <Key className="w-4 h-4 text-cyan-400" />
-              <span>Default Testing Credentials Pre-filled:</span>
-            </div>
-            <div className="font-mono text-gray-300">
-              Username: <span className="text-cyan-400 font-bold">admin</span>
-            </div>
-            <div className="font-mono text-gray-300">
-              Password: <span className="text-cyan-400 font-bold">Admin@123</span>
-            </div>
-            <div className="text-[10px] text-gray-400 pt-1 border-t border-[#1f293d] mt-1">
-              ⚠️ Remember to change this password in the Security tab before going live!
-            </div>
           </div>
 
           {loginError && (

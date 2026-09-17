@@ -16,10 +16,10 @@ import { CredentialsPage } from './components/CredentialsPage';
 import { ContactPage } from './components/ContactPage';
 import { AdminPanel } from './components/AdminPanel';
 import { ProjectModal } from './components/ProjectModal';
-import { CheckCircle2, Download } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 const MainLayout: React.FC = () => {
-  const { currentPage, toastMessage, downloadProjectZip, isExportingZip } = useSite();
+  const { currentPage, toastMessage } = useSite();
 
   const renderCurrentPage = () => {
     switch (currentPage) {
@@ -60,34 +60,6 @@ const MainLayout: React.FC = () => {
 
       {/* Lightbox Modal for Project Details */}
       <ProjectModal />
-
-      {/* Quick Floating "Download ZIP" Button (Bottom Right) */}
-      <button
-        onClick={downloadProjectZip}
-        disabled={isExportingZip}
-        title="Download complete website ZIP package"
-        className="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-2xl bg-[#111827]/95 hover:bg-[#151e2e] border border-cyan-500/40 hover:border-cyan-400 text-white shadow-2xl backdrop-blur-md flex items-center gap-2.5 transition-all duration-300 hover:scale-105 active:scale-95 text-xs font-bold group"
-        style={{
-          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--glow-1)',
-        }}
-      >
-        <div
-          className="w-7 h-7 rounded-xl flex items-center justify-center text-white"
-          style={{
-            background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
-          }}
-        >
-          {isExportingZip ? (
-            <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-          ) : (
-            <Download className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-          )}
-        </div>
-        <div className="text-left hidden sm:block">
-          <div className="text-[10px] text-cyan-400 font-extrabold uppercase tracking-wider">Project ZIP</div>
-          <div className="text-xs font-black text-white">Download Files</div>
-        </div>
-      </button>
 
       {/* Global Toast Notification */}
       {toastMessage && (

@@ -8,12 +8,11 @@ import {
   Github,
   ArrowUpRight,
   ShieldCheck,
-  Download,
   Lock
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { siteData, setCurrentPage, downloadProjectZip } = useSite();
+  const { siteData, setCurrentPage } = useSite();
 
   const handleNav = (page: PageId) => {
     setCurrentPage(page);
@@ -156,13 +155,6 @@ export const Footer: React.FC = () => {
 
             <div className="mt-5 pt-4 border-t border-[#1f293d] flex flex-col gap-2">
               <button
-                onClick={downloadProjectZip}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#151e2e] border border-cyan-500/30 text-cyan-300 text-xs font-medium hover:bg-cyan-950/40 transition"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Website ZIP</span>
-              </button>
-              <button
                 onClick={() => handleNav('admin')}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#151e2e] border border-[#1f293d] text-gray-400 hover:text-white text-xs transition"
               >
@@ -175,7 +167,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <p>© {new Date().getFullYear()} Hamza Arif. All rights reserved. Built with modern TypeScript & Tailwind CSS.</p>
+          <p>© {new Date().getFullYear()} Hamza Arif. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />

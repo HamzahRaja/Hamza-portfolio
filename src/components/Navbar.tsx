@@ -4,9 +4,6 @@ import { PageId } from '../types';
 import {
   Menu,
   X,
-  Download,
-  Lock,
-  Unlock,
   Sparkles,
   ExternalLink,
   ChevronRight
@@ -17,8 +14,6 @@ export const Navbar: React.FC = () => {
     currentPage,
     setCurrentPage,
     siteData,
-    isAdminLoggedIn,
-    downloadProjectZip,
     currentTheme,
   } = useSite();
 
@@ -98,43 +93,10 @@ export const Navbar: React.FC = () => {
 
         {/* Right CTA Actions */}
         <div className="hidden md:flex items-center gap-3">
-          {/* Download ZIP button */}
-          <button
-            onClick={downloadProjectZip}
-            title="Download complete source code & hosting package as a ZIP file"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-gray-300 bg-[#151e2e] border border-[#1f293d] hover:border-blue-500/50 hover:text-white transition-all shadow-sm group"
-          >
-            <Download className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-            <span>Download ZIP</span>
-          </button>
-
-          {/* Admin Panel button */}
-          <button
-            onClick={() => handleNavClick('admin')}
-            title={isAdminLoggedIn ? 'Open Admin Dashboard' : 'Login to Admin Panel'}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all border ${
-              isAdminLoggedIn
-                ? 'bg-emerald-950/40 text-emerald-400 border-emerald-500/40'
-                : 'bg-[#151e2e] text-[#94a3b8] border-[#1f293d] hover:text-white hover:border-gray-600'
-            }`}
-          >
-            {isAdminLoggedIn ? (
-              <>
-                <Unlock className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Admin: Active</span>
-              </>
-            ) : (
-              <>
-                <Lock className="w-3.5 h-3.5 text-gray-400" />
-                <span>Admin</span>
-              </>
-            )}
-          </button>
-
           {/* Let's Talk CTA */}
           <button
             onClick={() => handleNavClick('contact')}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white shadow-lg transition-transform duration-200 hover:scale-[1.02] active:scale-95"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-lg transition-transform duration-200 hover:scale-[1.02] active:scale-95"
             style={{
               background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
               boxShadow: '0 4px 20px var(--glow-1)',
@@ -146,13 +108,6 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile menu button */}
         <div className="flex items-center gap-2 lg:hidden">
-          <button
-            onClick={downloadProjectZip}
-            title="Download ZIP"
-            className="p-2 rounded-lg bg-[#151e2e] border border-[#1f293d] text-cyan-400"
-          >
-            <Download className="w-5 h-5" />
-          </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2.5 rounded-xl bg-[#151e2e] border border-[#1f293d] text-gray-300 hover:text-white"
@@ -188,28 +143,13 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-2 border-t border-[#1f293d] flex flex-col gap-2.5">
             <button
-              onClick={() => handleNavClick('admin')}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#151e2e] border border-[#1f293d] text-sm font-medium text-gray-300"
+              onClick={() => handleNavClick('contact')}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-white shadow-lg"
+              style={{
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))',
+              }}
             >
-              {isAdminLoggedIn ? (
-                <>
-                  <Unlock className="w-4 h-4 text-emerald-400" />
-                  <span className="text-emerald-300 font-semibold">Admin Panel (Logged In)</span>
-                </>
-              ) : (
-                <>
-                  <Lock className="w-4 h-4 text-gray-400" />
-                  <span>Admin Panel Login</span>
-                </>
-              )}
-            </button>
-
-            <button
-              onClick={downloadProjectZip}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#111827] border border-cyan-500/30 text-cyan-300 text-sm font-semibold"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download Complete Website (.ZIP)</span>
+              <span>Let&apos;s Work Together</span>
             </button>
           </div>
         </div>
